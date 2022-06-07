@@ -1,4 +1,4 @@
-package com.zhandos.news.feature_news.data.data_source
+package com.zhandos.news.feature_news.data.data_source.network
 
 import com.zhandos.news.feature_news.domain.model.News
 import retrofit2.http.GET

@@ -1,13 +1,17 @@
 package com.zhandos.news.di
 
+import android.app.Application
+import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zhandos.news.feature_news.data.data_source.NewsApi
-import com.zhandos.news.feature_news.data.data_source.NewsApiHolder
+import com.zhandos.news.feature_news.data.data_source.local.NewsDatabase
+import com.zhandos.news.feature_news.data.data_source.network.NewsApi
+import com.zhandos.news.feature_news.data.data_source.network.NewsApiHolder
+import com.zhandos.news.feature_news.data.repository.NewsLocalRepositoryImpl
 import com.zhandos.news.feature_news.data.repository.NewsNetworkRepositoryImpl
+import com.zhandos.news.feature_news.domain.repository.NewsLocalRepository
 import com.zhandos.news.feature_news.domain.repository.NewsNetworkRepository
-import com.zhandos.news.feature_news.domain.use_cases.GetNewsUseCase
-import com.zhandos.news.feature_news.domain.use_cases.NewsUseCases
+import com.zhandos.news.feature_news.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,10 +51,36 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsUseCases(repository: NewsNetworkRepository): NewsUseCases {
+    fun provideNewsUseCases(
+        repository: NewsNetworkRepository,
+        localRepository: NewsLocalRepository
+    ): NewsUseCases {
         return NewsUseCases(
-            GetNewsUseCase(repository)
+            GetNewsRemoteUseCase(repository),
+            AddNewsLocalUseCase(localRepository),
+            GetNewLocalUseCase(localRepository),
+            GetNewsLocalUseCase(localRepository),
+            DeleteLocalUseCase(localRepository)
         )
     }
+
+
+    //Room
+    @Provides
+    @Singleton
+    fun provideDatabase(application: Application): NewsDatabase {
+        return Room.databaseBuilder(
+            application,
+            NewsDatabase::class.java,
+            "NewsDatabase"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepository(newsDatabase: NewsDatabase): NewsLocalRepository {
+        return NewsLocalRepositoryImpl(newsDatabase.dao)
+    }
+
 
 }

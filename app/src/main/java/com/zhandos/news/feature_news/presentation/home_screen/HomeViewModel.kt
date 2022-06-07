@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(private val useCases: NewsUseCases) : Vi
 
     private fun getData() {
         viewModelScope.launch {
-            val news = useCases.getNewsUseCase()
+            val news = useCases.getNewsRemoteUseCase()
             status.value = news
         }
     }

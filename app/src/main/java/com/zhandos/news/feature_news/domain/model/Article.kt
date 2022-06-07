@@ -1,10 +1,16 @@
 package com.zhandos.news.feature_news.domain.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+@Entity(tableName = "Article")
 data class Article(
-    @Json(name = "source")
-    val source: Source?,
+    @Json(ignore = true)
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = 0L,
     val author: String?,
     val title: String?,
     val description: String?,
@@ -13,6 +19,8 @@ data class Article(
     val publishedAt: String?,
     val content: String?
 ) {
+
+
 
     fun getShortTitle(): String? {
         if (title == null) {

@@ -12,46 +12,47 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_marginBottom="4dp"
+        app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
-                app:imageUrl="@{article.urlToImage}"
-                app:layout_constraintEnd_toStartOf="@id/title"
-                app:layout_constraintStart_toStartOf="@id/content_start"
-                app:layout_constraintTop_toTopOf="@id/content_top"
-                app:shapeAppearanceOverlay="@style/image_corner" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/remove_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:shapeAppearanceOverlay="@style/image_corner"
+                app:layout_constraintEnd_toStartOf="@+id/content_end"
+                app:layout_constraintTop_toBottomOf="@id/content_top"
+                app:srcCompat="@drawable/ic_baseline_delete_24"
+                app:fabSize="normal"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/remove" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="100 Interier ideas for creating beautiful home"
+                android:text="@{article.getShortTitle()}"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/content_end"
-                app:layout_constraintStart_toEndOf="@+id/image"
-                app:layout_constraintTop_toTopOf="@+id/content_top" />
+                app:layout_constraintEnd_toStartOf="@+id/remove_btn"
+                app:layout_constraintStart_toStartOf="@+id/content_start"
+                app:layout_constraintTop_toTopOf="@+id/content_top"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:id="@+id/author"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Jackson"
+                android:text="@{article.author}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/content_end"
-                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintEnd_toStartOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/content_start"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
             <TextView
@@ -59,9 +60,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="2 days ago"
+                android:layout_marginEnd="8dp"
+                android:text="@{article.getShortTime()}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/content_end"
+                app:layout_constraintEnd_toStartOf="@+id/remove_btn"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
 
@@ -71,6 +73,7 @@
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="8dp" />
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/content_start"
