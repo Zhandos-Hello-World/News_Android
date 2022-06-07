@@ -57,7 +57,7 @@ object AppModule {
     ): NewsUseCases {
         return NewsUseCases(
             GetNewsRemoteUseCase(repository),
-            AddNewsLocalUseCase(localRepository),
+            AddNewLocalUseCase(localRepository),
             GetNewLocalUseCase(localRepository),
             GetNewsLocalUseCase(localRepository),
             DeleteLocalUseCase(localRepository)

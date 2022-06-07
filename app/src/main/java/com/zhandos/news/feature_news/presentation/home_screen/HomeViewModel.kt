@@ -3,6 +3,7 @@ package com.zhandos.news.feature_news.presentation.home_screen
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zhandos.news.feature_news.domain.model.Article
 import com.zhandos.news.feature_news.domain.model.News
 import com.zhandos.news.feature_news.domain.use_cases.NewsUseCases
 import kotlinx.coroutines.launch
@@ -20,6 +21,12 @@ class HomeViewModel @Inject constructor(private val useCases: NewsUseCases) : Vi
         viewModelScope.launch {
             val news = useCases.getNewsRemoteUseCase()
             status.value = news
+        }
+    }
+
+    fun addData(article: Article) {
+        viewModelScope.launch {
+            useCases.addNewLocalUseCase(article)
         }
     }
 

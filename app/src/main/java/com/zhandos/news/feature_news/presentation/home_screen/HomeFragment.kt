@@ -28,7 +28,9 @@ class HomeFragment: Fragment() {
         val view = binding.root
 
 
-        val adapter = ArticleAdapter()
+        val adapter = ArticleAdapter {
+            viewModel.addData(it)
+        }
         binding.listItem.adapter = adapter
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
@@ -37,7 +39,6 @@ class HomeFragment: Fragment() {
 
 
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         return view
     }

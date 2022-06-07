@@ -10,7 +10,7 @@ import com.squareup.moshi.Json
 data class Article(
     @Json(ignore = true)
     @PrimaryKey(autoGenerate = true)
-    val id: Long? = 0L,
+    var id: Long = 0L,
     val author: String?,
     val title: String?,
     val description: String?,

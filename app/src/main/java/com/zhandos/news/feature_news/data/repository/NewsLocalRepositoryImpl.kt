@@ -20,6 +20,10 @@ class NewsLocalRepositoryImpl(private val dao: NewsDao): NewsLocalRepository {
     }
 
     override suspend fun insert(article: Article) {
-        dao.insert(article)
+        if (article.title != null) {
+            if (dao.getByTitle(article.title).value == null) {
+                dao.insert(article)
+            }
+        }
     }
 }

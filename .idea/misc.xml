@@ -6,11 +6,12 @@
         <entry key="app/src/main/res/drawable/ic_broken_image.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/loading_animation.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.153" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1647940074906367" />
-        <entry key="app/src/main/res/layout/item_article.xml" value="0.46511627906976744" />
+        <entry key="app/src/main/res/layout/item_article.xml" value="0.8348657297533613" />
         <entry key="app/src/main/res/layout/item_article_2.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.4495407104492188" />
       </map>
     </option>
   </component>
