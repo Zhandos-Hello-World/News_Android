@@ -4,7 +4,9 @@ import com.zhandos.news.feature_news.common.Constants
 import com.zhandos.news.feature_news.data.data_source.network.NewsApiHolder
 import com.zhandos.news.feature_news.data.repository.NewsRepositoryImpl
 import com.zhandos.news.feature_news.domain.repository.NewsRepository
-import com.zhandos.news.feature_news.domain.use_cases.GetNewsRemoteUseCase
+import com.zhandos.news.feature_news.domain.use_cases.GetEverythingUseCase
+import com.zhandos.news.feature_news.domain.use_cases.GetSourcesUseCase
+import com.zhandos.news.feature_news.domain.use_cases.GetTopHeadlinesUseCase
 import com.zhandos.news.feature_news.domain.use_cases.NewsUseCases
 import dagger.Module
 import dagger.Provides
@@ -40,7 +42,9 @@ object AppModule {
         repository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            GetNewsRemoteUseCase(repository),
+            GetEverythingUseCase(repository),
+            GetTopHeadlinesUseCase(repository),
+            GetSourcesUseCase(repository)
         )
     }
 
