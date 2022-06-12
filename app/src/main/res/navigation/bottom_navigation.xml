@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.zhandos.news.feature_news.presentation.home_screen.HomeFragment"
-        android:label="HomeFragment"
+        android:name="com.zhandos.news.feature_news.presentation.home_tab.HomeTabFragment"
+        android:label="HomeTabFragment"
         tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/bookmarkFragment"
-        android:name="com.zhandos.news.feature_news.presentation.bookmark_screen.BookmarkFragment"
-        android:label="BookmarkFragment"
+        android:name="com.zhandos.news.feature_news.presentation.bookmark_tab.BookmarkTabFragment"
+        android:label="BookmarkTabFragment"
         tools:layout="@layout/fragment_bookmark"/>
 </navigation>

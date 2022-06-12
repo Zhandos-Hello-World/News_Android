@@ -9,11 +9,8 @@ import javax.inject.Inject
 
 
 class BookmarkViewModel @Inject constructor(private val useCases: NewsUseCases): ViewModel() {
-    val lists = useCases.getNewsLocalUseCase()
 
     fun removeById(article: Article) {
-        viewModelScope.launch {
-            useCases.deleteLocalUseCase(article)
-        }
+
     }
 }

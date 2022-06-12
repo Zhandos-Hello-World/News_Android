@@ -36,9 +36,9 @@ class BookmarkFragment : Fragment() {
 
         binding.listItem.adapter = adapter
 
-        viewModel.lists.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
+//        viewModel.lists.observe(viewLifecycleOwner, Observer {
+//            adapter.submitList(it)
+//        })
 
 
         return view

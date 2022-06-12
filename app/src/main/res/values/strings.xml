@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">News</string>
     <string name="remove">Remove</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="bookmark">Bookmark</string>
 </resources>

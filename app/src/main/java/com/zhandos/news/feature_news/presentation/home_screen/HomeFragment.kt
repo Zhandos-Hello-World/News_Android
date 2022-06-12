@@ -34,7 +34,7 @@ class HomeFragment: Fragment() {
 
 
         val adapter = ArticleAdapter {
-            viewModel.addData(it)
+            //viewModel.addData(it)
             val value = "Added - " + it.title
             val snack: Snackbar = Snackbar.make(view, value, Snackbar.LENGTH_SHORT)
 

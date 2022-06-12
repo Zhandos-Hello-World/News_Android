@@ -1,22 +1,17 @@
 package com.zhandos.news.di
 
-import android.app.Application
-import androidx.room.Room
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zhandos.news.feature_news.data.data_source.local.NewsDatabase
-import com.zhandos.news.feature_news.data.data_source.network.NewsApi
+import com.zhandos.news.feature_news.common.Constants
 import com.zhandos.news.feature_news.data.data_source.network.NewsApiHolder
-import com.zhandos.news.feature_news.data.repository.NewsLocalRepositoryImpl
-import com.zhandos.news.feature_news.data.repository.NewsNetworkRepositoryImpl
-import com.zhandos.news.feature_news.domain.repository.NewsLocalRepository
-import com.zhandos.news.feature_news.domain.repository.NewsNetworkRepository
-import com.zhandos.news.feature_news.domain.use_cases.*
+import com.zhandos.news.feature_news.data.repository.NewsRepositoryImpl
+import com.zhandos.news.feature_news.domain.repository.NewsRepository
+import com.zhandos.news.feature_news.domain.use_cases.GetNewsRemoteUseCase
+import com.zhandos.news.feature_news.domain.use_cases.NewsUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -25,62 +20,47 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
+    fun provideNewApiHolder(): NewsApiHolder {
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(NewsApiHolder::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideRetrofit(moshi: Moshi): Retrofit {
-        return NewsApi.retrofit(moshi)
-    }
-
-    @Provides
-    @Singleton
-    fun provideNewApiHolder(retrofit: Retrofit): NewsApiHolder {
-        return retrofit.create(NewsApiHolder::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideNewsNetworkRepository(newsApiHolder: NewsApiHolder): NewsNetworkRepository {
-        return NewsNetworkRepositoryImpl(newsApiHolder)
+    fun provideNewsNetworkRepository(newsApiHolder: NewsApiHolder): NewsRepository {
+        return NewsRepositoryImpl(newsApiHolder)
     }
 
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        repository: NewsNetworkRepository,
-        localRepository: NewsLocalRepository
+        repository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
             GetNewsRemoteUseCase(repository),
-            AddNewLocalUseCase(localRepository),
-            GetNewLocalUseCase(localRepository),
-            GetNewsLocalUseCase(localRepository),
-            DeleteLocalUseCase(localRepository)
         )
     }
 
 
-    //Room
-    @Provides
-    @Singleton
-    fun provideDatabase(application: Application): NewsDatabase {
-        return Room.databaseBuilder(
-            application,
-            NewsDatabase::class.java,
-            "NewsDatabase"
-        ).build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRepository(newsDatabase: NewsDatabase): NewsLocalRepository {
-        return NewsLocalRepositoryImpl(newsDatabase.dao)
-    }
+//    //Room
+//    @Provides
+//    @Singleton
+//    fun provideDatabase(application: Application): NewsDatabase {
+//        return Room.databaseBuilder(
+//            application,
+//            NewsDatabase::class.java,
+//            "NewsDatabase"
+//        ).build()
+//    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideRepository(newsDatabase: NewsDatabase): NewsLocalRepository {
+//        return NewsLocalRepositoryImpl(newsDatabase.dao)
+//    }
 
 
 }
