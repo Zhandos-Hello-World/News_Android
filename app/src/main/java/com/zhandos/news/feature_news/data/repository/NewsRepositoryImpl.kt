@@ -12,7 +12,7 @@ import com.zhandos.news.feature_news.domain.repository.NewsRepository
 class NewsRepositoryImpl(private val newsApiHolder: NewsApiHolder) : NewsRepository {
 
     override suspend fun getEverything(sortBy: Sort): News {
-        return newsApiHolder.getEverything(sortBy).toNews()
+        return newsApiHolder.getEverything().toNews()
     }
 
     override suspend fun getTopHeadlines(country: String, category: Category): News {
