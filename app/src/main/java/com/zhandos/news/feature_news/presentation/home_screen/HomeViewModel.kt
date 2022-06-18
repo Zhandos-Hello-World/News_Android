@@ -23,7 +23,7 @@ class HomeViewModel @Inject constructor(private val useCases: NewsUseCases) : Vi
         useCases.getEverythingUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _status.value = NewsState(isLoading = false, news = result.data)
+                    _status.value = NewsState(isLoading = false, newsArticle = result.data)
                 }
                 is Resource.Loading -> {
                     _status.value = NewsState(isLoading = true)

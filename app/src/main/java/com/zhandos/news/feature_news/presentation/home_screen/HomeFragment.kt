@@ -49,7 +49,7 @@ class HomeFragment: Fragment() {
         binding.listItem.adapter = adapter
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it.news?.articles ?: emptyList())
+            adapter.submitList(it.newsArticle?.articles ?: emptyList())
         })
 
 

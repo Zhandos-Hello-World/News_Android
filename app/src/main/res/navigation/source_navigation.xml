@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/source_navigation"
+    app:startDestination="@id/sourceListFragment">
+
+    <fragment
+        android:id="@+id/sourceListFragment"
+        android:name="com.zhandos.news.feature_news.presentation.source_list_screen.SourceListFragment"
+        android:label="SourceListFragment" >
+        <action
+            android:id="@+id/action_sourceListFragment_to_sourceDetailFragment"
+            app:destination="@id/sourceDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sourceDetailFragment"
+        android:name="com.zhandos.news.feature_news.presentation.source_detail_screen.SourceDetailFragment"
+        android:label="SourceDetailFragment" />
+</navigation>

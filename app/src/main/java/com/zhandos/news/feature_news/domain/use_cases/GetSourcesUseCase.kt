@@ -10,18 +10,24 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class GetSourcesUseCase(private val repository: NewsRepository) {
-    operator fun invoke(
-        county: String = "us",
-        category: Category = Category.GENERAL
-    ): Flow<Resource<NewsSource>> = flow {
-        try {
-            emit(Resource.Loading<NewsSource>())
-            val source = repository.getSources(county, category)
-            emit(Resource.Success<NewsSource>(source))
-        } catch (ex: HttpException) {
-            emit(Resource.Error<NewsSource>(ex.localizedMessage ?: "An unexpected error occured"))
-        } catch (ex: IOException) {
-            emit(Resource.Error<NewsSource>("Couldn't reach server. Check your internet connection"))
-        }
+
+
+//    operator fun invoke(
+//        county: String = "us",
+//        category: Category = Category.GENERAL
+//    ): Flow<Resource<NewsSource>> = flow {
+//        try {
+//            emit(Resource.Loading<NewsSource>())
+//            val source = repository.getSources(county, category)
+//            emit(Resource.Success<NewsSource>(source))
+//        } catch (ex: HttpException) {
+//            emit(Resource.Error<NewsSource>(ex.localizedMessage ?: "An unexpected error occured"))
+//        } catch (ex: IOException) {
+//            emit(Resource.Error<NewsSource>("Couldn't reach server. Check your internet connection"))
+//        }
+//    }
+    suspend operator fun invoke(): NewsSource {
+        return repository.getSources()
     }
+
 }

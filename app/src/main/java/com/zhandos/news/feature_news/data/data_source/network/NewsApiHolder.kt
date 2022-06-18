@@ -3,8 +3,9 @@ package com.zhandos.news.feature_news.data.data_source.network
 import com.zhandos.news.feature_news.common.Constants
 import com.zhandos.news.feature_news.data.data_source.network.common.Category
 import com.zhandos.news.feature_news.data.data_source.network.common.Sort
+import com.zhandos.news.feature_news.data.data_source.network.dto.NewsDto
 import com.zhandos.news.feature_news.data.data_source.network.dto.NewsSourceDto
-import com.zhandos.news.feature_news.data.data_source.network.dto.NewsTotalDto
+import com.zhandos.news.feature_news.domain.model.NewsSource
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -27,7 +28,7 @@ interface NewsApiHolder {
     @GET("/v2/everything?q=keyword&apiKey=${Constants.API_KEY}")
     suspend fun getEverything(
         @Query("sortBy") sortBy: Sort = Sort.RELEVANCY,
-    ): NewsTotalDto
+    ): NewsDto
 
 
     /*  TODO TOP-HEADLINES
@@ -43,7 +44,7 @@ interface NewsApiHolder {
     suspend fun getTopHeadlines(
         @Query("country") country: String = "us",
         @Query("category") category: Category = Category.SCIENCE
-    ): NewsTotalDto
+    ): NewsDto
 
 
     /*  TODO SOURCES

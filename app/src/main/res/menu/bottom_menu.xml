@@ -19,4 +19,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_bookmark_24"
         />
+    <item
+        android:id="@+id/sourcesFragment"
+        android:title="@string/sources"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_baseline_radio_24"
+        />
 </menu>

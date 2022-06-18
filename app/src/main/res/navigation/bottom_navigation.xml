@@ -15,4 +15,11 @@
         android:name="com.zhandos.news.feature_news.presentation.bookmark_tab.BookmarkTabFragment"
         android:label="BookmarkTabFragment"
         tools:layout="@layout/fragment_bookmark"/>
+
+    <fragment
+        android:id="@+id/sourcesFragment"
+        android:name="com.zhandos.news.feature_news.presentation.tabs_screen.SourceTabFragment"
+        android:label="SourceTabFragment"
+        tools:layout="@layout/fragment_source_list"
+        />
 </navigation>

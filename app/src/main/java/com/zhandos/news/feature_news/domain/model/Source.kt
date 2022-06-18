@@ -1,6 +1,6 @@
-package com.zhandos.news.feature_news.data.data_source.network.dto
+package com.zhandos.news.feature_news.domain.model
 
-data class SourceX(
+data class Source(
     val category: String,
     val country: String,
     val description: String,
