@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zhandos.news.databinding.ItemSourceBinding
 import com.zhandos.news.feature_news.domain.model.Source
 
-class SourceAdapter : ListAdapter<Source, SourceAdapter.SourceViewHolder>(SourceDiffUtil()) {
+class SourceAdapter(val listener: (url: String) -> Unit) :
+    ListAdapter<Source, SourceAdapter.SourceViewHolder>(SourceDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SourceViewHolder {
         return SourceViewHolder.inflate(parent)
@@ -15,15 +16,19 @@ class SourceAdapter : ListAdapter<Source, SourceAdapter.SourceViewHolder>(Source
 
     override fun onBindViewHolder(holder: SourceViewHolder, position: Int) {
         val newsSource = getItem(position)
-        holder.bind(newsSource)
+        holder.bind(newsSource, listener)
     }
 
 
     class SourceViewHolder(private val binding: ItemSourceBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(newsSource: Source) {
+        fun bind(newsSource: Source, listener: (url: String) -> Unit) {
             binding.newsSource = newsSource
+
+            binding.cardView.setOnClickListener {
+                listener(newsSource.url)
+            }
         }
 
         companion object {
