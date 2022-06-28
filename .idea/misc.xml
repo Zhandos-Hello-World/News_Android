@@ -11,7 +11,8 @@
         <entry key="app/src/main/res/layout/flow_fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2837081909179688" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1647940074906367" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24210418815469922" />
+        <entry key="app/src/main/res/layout/fragment_home_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_source_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_source_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_source_tab.xml" value="0.1" />
