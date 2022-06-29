@@ -2,20 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.skydoves.androidveil.VeilRecyclerFrameView
+        android:id="@+id/veilRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:veilFrame_layout="@layout/item_article"
+        app:veilFrame_veiled="true"
+        app:veilFrame_shimmerEnable="true"
+        app:veilFrame_highlightColor="@color/white_gray"
+        app:veilFrame_baseAlpha="0.6"
+        app:veilFrame_highlightAlpha="1.0"
+        app:veilFrame_radius="8dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_item"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/white_gray"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

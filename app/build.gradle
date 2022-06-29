@@ -89,4 +89,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:2.4.2"
 
+    //For modern progressbar
+    implementation "com.github.skydoves:androidveil:1.1.2"
+
 }

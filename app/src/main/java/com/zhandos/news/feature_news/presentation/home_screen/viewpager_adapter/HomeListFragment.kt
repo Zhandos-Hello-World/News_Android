@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhandos.news.databinding.FragmentHomeListBinding
 import com.zhandos.news.feature_news.data.data_source.network.common.Category
 import com.zhandos.news.feature_news.presentation.home_screen.adapter.ArticleAdapter
@@ -28,13 +29,20 @@ class HomeListFragment(val category: Category) : Fragment() {
         _binding = FragmentHomeListBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val adapter = ArticleAdapter {
+        val adapter = ArticleAdapter { }
 
-        }
-        binding.listItem.adapter = adapter
+        binding.veilRecyclerView.setAdapter(adapter)
+        binding.veilRecyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+        binding.veilRecyclerView.addVeiledItems(15)
+
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it.newsArticle?.articles ?: emptyList())
+            val articles = it.newsArticle?.articles ?: emptyList()
+            adapter.submitList(articles)
+
+            if (articles.isNotEmpty()) {
+                binding.veilRecyclerView.unVeil()
+            }
         })
 
         binding.lifecycleOwner = this
