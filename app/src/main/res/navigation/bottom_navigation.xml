@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home_navigation">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.zhandos.news.feature_news.presentation.home_tab.HomeTabFragment"
-        android:label="HomeTabFragment"
-        tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.zhandos.news.feature_news.presentation.bookmark_tab.BookmarkTabFragment"
         android:label="BookmarkTabFragment"
         tools:layout="@layout/fragment_bookmark"/>
 
-    <fragment
-        android:id="@+id/sourcesFragment"
-        android:name="com.zhandos.news.feature_news.presentation.tabs_screen.SourceTabFragment"
-        android:label="SourceTabFragment"
-        tools:layout="@layout/fragment_source_list"
-        />
+
+    <include app:graph="@navigation/source_navigation"/>
+
+    <include app:graph="@navigation/home_navigation"/>
+
+
 </navigation>

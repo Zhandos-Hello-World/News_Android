@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_navigation"
         android:title="@string/home"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_home_24"
@@ -10,19 +10,19 @@
     <item
         android:id="@+id/searchFragment"
         android:title="@string/search"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:icon="@drawable/ic_baseline_search_24"
         />
     <item
         android:id="@+id/bookmarkFragment"
         android:title="@string/bookmark"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:icon="@drawable/ic_baseline_bookmark_24"
         />
     <item
-        android:id="@+id/sourcesFragment"
+        android:id="@+id/source_navigation"
         android:title="@string/sources"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:icon="@drawable/ic_baseline_radio_24"
         />
 </menu>

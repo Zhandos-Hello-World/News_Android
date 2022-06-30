@@ -4,15 +4,21 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.zhandos.news.feature_news.data.data_source.network.common.Category
 
-class HomeStateAdapter(fragment: Fragment, private val categories: Array<Category>) : FragmentStateAdapter(fragment) {
+class ArticlesPagerAdapter(fragment: Fragment, private val categories: Array<Category>) :
+    FragmentStateAdapter(fragment) {
 
+    private val fragmentsCreator = Array<(category: Category) -> Fragment>(itemCount) {
+        { HomeListFragment(it) }
+    }
 
     override fun getItemCount(): Int {
         return categories.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return HomeListFragment(categories[position])
+        val category = categories[position]
+
+        return fragmentsCreator[position].invoke(category)
     }
 
 }
